@@ -4,8 +4,11 @@ import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
+  // Tự động kiểm tra nếu đang build trên GitHub Actions thì lấy base là /quanlimatkhau/
+  const isGithubPages = process.env.GITHUB_ACTIONS === 'true';
+
   return {
-    base: '/quanlimatkhau/',
+    base: isGithubPages ? '/quanlimatkhau/' : '/',
     plugins: [
       react(),
       tailwindcss()
